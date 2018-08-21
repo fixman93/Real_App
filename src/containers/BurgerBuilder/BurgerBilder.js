@@ -21,13 +21,14 @@ class BurgerBulder extends Component {
     // this is new way
     state = {
         ingredients: {
-            salad: 1,
-            bacon: 2,
-            cheese: 1,
-            meat: 3
+            salad: 0,
+            bacon: 0,
+            cheese: 0,
+            meat: 0
         },
         totalPrice: 4,
-        purchaseable: false
+        purchaseable: false,
+        purchasing: false
     }
 
     updatePurchasable (ingredients) {
@@ -71,6 +72,10 @@ class BurgerBulder extends Component {
         this.updatePurchasable(updateIngredients)
     }
 
+    purchaseHandler = () => {
+        this.setState( { purchasing: true } )
+    }
+
     render() {
         const disabledInfo = {
             ...this.state.ingredients
@@ -80,7 +85,7 @@ class BurgerBulder extends Component {
         }
         return (
             <Aux>
-                <Modal>
+                <Modal show={this.state.purchasing}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients = {this.state.ingredients} />
@@ -89,6 +94,7 @@ class BurgerBulder extends Component {
                     removedingredient={this.removeIngredientsHandler}
                     disabled={disabledInfo}
                     purchasable={this.state.purchaseable}
+                    ordered={this.purchaseHandler}
                     price={this.state.totalPrice}
                 />
             </Aux>
