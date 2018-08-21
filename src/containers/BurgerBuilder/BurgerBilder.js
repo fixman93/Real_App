@@ -24,7 +24,21 @@ class BurgerBulder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        purchaseable: false
+    }
+
+    updatePurchasable () {
+        const ingredients = {
+            ...this.state.ingredients
+        }
+        const sum = Object.keys(ingredients).map(igKey => {
+            return ingredients[igKey]
+        })
+        .reduce((sum, el) => {
+            return sum + el
+        }, 0)
+        this.setState({purchaseable: sum > 0})
     }
 
     removeIngredientsHandler = (type) => {
@@ -70,6 +84,7 @@ class BurgerBulder extends Component {
                     ingredientAdded={this.addIngredientsHandler}
                     removedingredient={this.removeIngredientsHandler}
                     disabled={disabledInfo}
+                    purchaseable={this.state.purchaseable}
                     price={this.state.totalPrice}
                 />
             </Aux>
