@@ -7,7 +7,9 @@ import Style from './SideDraw.css'
 const sideDraw = (props) => {
     return (
         <div className={Style.SideDraw}>
-            <Logo />
+            <div className={Style.Logo}>
+                <Logo />
+            </div>
             <nav>
                 <NavigationItems />
             </nav>
