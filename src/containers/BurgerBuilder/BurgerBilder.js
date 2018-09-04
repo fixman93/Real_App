@@ -5,6 +5,7 @@ import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+import axios from '../../axios-order'
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -81,7 +82,24 @@ class BurgerBulder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        alert('You continue!')
+        //alert('You continue!')
+        const order = {
+          ingredients: this.state.ingredients,
+          price: this.state.totalPrice,
+          customer: {
+            name: "Boris Civcic",
+            address: {
+              street: "Brod",
+              zipCode: "74450",
+              country: "Serbia"
+            },
+            email: "civcicboris93@gmail.com"
+          },
+          deliveryMethod: "fastes"
+        }
+        axios.post('order.json', order)
+          .then(response => console.log(response))
+          .catch(error => console.log(error))
     }
 
     render() {
@@ -94,14 +112,14 @@ class BurgerBulder extends Component {
         return (
             <Aux>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary 
+                    <OrderSummary
                     ingredients={this.state.ingredients}
                     price={this.state.totalPrice}
                     purchaseCancelled={this.purchaseCancelHandler}
                     purchaseContinue={this.purchaseContinueHandler} />
                 </Modal>
                 <Burger ingredients = {this.state.ingredients} />
-                <BuildControls 
+                <BuildControls
                     ingredientAdded={this.addIngredientsHandler}
                     removedingredient={this.removeIngredientsHandler}
                     disabled={disabledInfo}

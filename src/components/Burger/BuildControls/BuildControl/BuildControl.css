@@ -35,7 +35,7 @@
     width: 80px;
 }
 
-.BuildControl .Less {  
+.BuildControl .Less {
     background-color: #D39952;
     color: white;
 }
@@ -45,7 +45,7 @@
     color: white;
 }
 
-.BuildControl .Less:hover, .BuildControl .Less:active {  
+.BuildControl .Less:hover, .BuildControl .Less:active {
     background-color: #DAA972;
     color: white;
 }
