@@ -22,7 +22,11 @@ const reducer = (state = initialState, action) => {
             }
         case actionTypes.REMOVE_INGREDIENTS:
             return {
-                
+                ...state,
+                ingredients: {
+                    ...state.ingredients,
+                    [action.ingredientName]: state.ingredientName[action.ingredientName] - 1
+                }
             }
         default:
             return state
