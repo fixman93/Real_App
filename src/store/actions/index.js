@@ -1,5 +1,6 @@
 export { 
     addIngredient, 
-    removeIngredient
+    removeIngredient,
+    initIngredients
 } from './burderBuilder'
 export {} from './order'
