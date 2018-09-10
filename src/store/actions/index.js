@@ -4,5 +4,6 @@ export {
     initIngredients
 } from './burderBuilder'
 export { 
-    purchaseBurger
+    purchaseBurger,
+    purchaseInit
 } from './order'
