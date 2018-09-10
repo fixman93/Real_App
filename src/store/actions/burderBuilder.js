@@ -23,14 +23,20 @@ export const setIngredients = (ingredients) => {
     }
 }
 
+export const fetchIngredientsFaild = () => {
+    return {
+        type: actionTypes.FETCH_INGREDIENTS_FAILD
+    }
+}
+
 export const initIngredients = () => {
     return dispatch => {
         axios.get( 'https://react-my-burger.firebaseio.com/ingredients.json' )
             .then( response => {
-                this.setState( { ingredients: response.data } );
+                dispatch(setIngredients(response.data))
             } )
             .catch( error => {
-                this.setState( { error: true } );
+                dispatch(fetchIngredientsFaild())
         } );
     }
 }
